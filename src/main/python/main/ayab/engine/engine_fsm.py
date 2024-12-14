@@ -157,7 +157,8 @@ class StateMachine(QStateMachine):
                 control.com.req_start_API6(
                     control.pattern.knit_start_needle,
                     control.pattern.knit_end_needle - 1,
-                    control.continuous_reporting,
+                    True,
+#                    control.continuous_reporting,
                     control.prefs.value("disable_hardware_beep"),
                 )
                 control.state = State.CONFIRM_START
