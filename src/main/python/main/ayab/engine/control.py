@@ -186,13 +186,13 @@ class Control(SignalSender):
         state = msg[2]
         hallLeft = struct.unpack(">H", msg[3:5])[0]
         hallRight = struct.unpack(">H", msg[5:7])[0]
-        carriage = carriageMap[msg[7]]
+        carriage = carriageMap.get(msg[7], f"0x{msg[7]:02x}?")
         position = msg[8]
-        direction = directionMap[msg[9]]
+        direction = directionMap.get(msg[9], f"0x{msg[9]:02x}?")
 
         try:  # AyabAsync supplies additional parameters
-            hallActive = machineSideMap[msg[10]]
-            beltShift = beltShiftMap[msg[11]]
+            hallActive = machineSideMap.get(msg[10], f"0x{msg[10]:02x}?")
+            beltShift = beltShiftMap.get(msg[11], f"0x{msg[11]:02x}?")
             self.logger.info(
                 f"IndState: {error:1d} {state:1d} {position:3d}"
                 f" {carriage:5s} ({beltShift:11s},{direction:5s})"
